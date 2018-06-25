@@ -18,11 +18,11 @@ function FreakInvaders() {
     that.background.move();
     that.freakinvaders.moveOvni();
     that.freakinvaders.moveInvaders();
-//    that.defensepod.moveShoot();
+    that.defensepod.moveShoot();
     that.ctx.clearRect(0, 0, that.canvas.width, that.canvas.height);
     that.background.drawBackground();
     that.defensepod.drawDefense();
- //   that.defensepod.drawShoot();
+    that.defensepod.drawShoot();
     that.freakinvaders.drawInvaders();
     requestAnimationFrame(that.updateCanvas);
   };
@@ -67,10 +67,11 @@ document.getElementById("start-game-button").onclick = function() {
     case 39:
       newGame.defensepod.moveRight(newGame.ctx, newGame.canvas);
       break;
-    case 32:
-      newGame.defensepod.shoot(newGame.ctx, newGame.canvas, newGame.shootsArray);
-  //   alert("NO APRETAR");
+    case 68:
+      newGame.defensepod.shoot(newGame.ctx, newGame.canvas, newGame.freakinvaders);
       break;
+
+            
   }
 };
   

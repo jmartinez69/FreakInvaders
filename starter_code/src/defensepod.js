@@ -1,4 +1,4 @@
-function DefensePod(ctx, canvas, shootsArray) {
+function DefensePod(ctx, canvas, freakinvaders) {
   this.ctx = ctx;
   this.canvas = canvas;
   this.posX = 20;
@@ -8,7 +8,7 @@ function DefensePod(ctx, canvas, shootsArray) {
   this.anchoPod = 40;
   this.altoPod = 5;
   this.limitX = canvas.width - this.anchoPod;
-  this.shootsArray = shootsArray;
+  this.shootsArray = [];
 }
 DefensePod.prototype.drawDefense = function() {
   this.ctx.save();
@@ -36,25 +36,30 @@ DefensePod.prototype.shoot = function() {
   newShoot.x = this.posX;
   newShoot.y = this.posY + this.altoPod;
   this.shootsArray.push(newShoot);
+
 };
-DefensePod.prototype.moveShoot = function(shootsArray) {
-  for (var i=0; i < shootsArray.length; i++) {
-    if (shootsArray[i].direccion == "up") {
-      shootsArray[i].y += shootsArray[i].shootSpeed;
+DefensePod.prototype.moveShoot = function() {
+  for (var i=0; i < this.shootsArray.length; i++) {
+    if (this.shootsArray[i].direccion == "up") {
+      if (this.shootsArray[i].y > 0){
+         this.shootsArray[i].y += this.shootsArray[i].shootSpeed;
+      } else {
+         this.shootsArray.splice(i,1);
+      }
     }
   }
 };
 DefensePod.prototype.drawShoot = function(shootsArray) {
-  for (var i = 0; i < shootsArray.length; i++) {
-    if (shootsArray[i].shootBoolean) {
+  for (var i = 0; i < this.shootsArray.length; i++) {
+    if (this.shootsArray[i].shootBoolean) {
       this.ctx.save();
-      this.ctx.strokeStile = "#FF5733";
-      this.ctx.lineWidth = 1.1;
+      this.ctx.strokeStyle = "yellow";
+      this.ctx.lineWidth = 2;
       this.ctx.beginPath();
-      this.ctx.moveTo(shootsArray[i].x, shootsArray[i].y);
+      this.ctx.moveTo(this.shootsArray[i].x, this.shootsArray[i].y);
       this.ctx.lineTo(
-        shootsArray[i].x,
-        shootsArray[i].y + shootsArray[i].shootLineOffset
+        this.shootsArray[i].x,
+        this.shootsArray[i].y - this.shootsArray[i].shootLineOffset
       );
       this.ctx.stroke();
       this.ctx.closePath();
@@ -71,9 +76,9 @@ function Shoot(ctx, canvas) {
   this.shootBoolean = true;
   this.x = 0;
   this.y = canvas.height;
-  this.shootLineOffset = 10;
+  this.shootLineOffset = 20;
   this.direccion = "up";
-  this.shootSpeed = -5;
+  this.shootSpeed = -4;
 }
 
 
