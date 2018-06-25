@@ -36,6 +36,7 @@ function FreakInvaders() {
   this.updateCanvas = function() {
     that.background.move();
     that.freakinvaders.moveOvni();
+    that.freakinvaders.moveInvaders();
     that.ctx.clearRect(0, 0, that.canvas.width, that.canvas.height);
     that.background.drawBackground();
     that.defensepod.drawDefense();
