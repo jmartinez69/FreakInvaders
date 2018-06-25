@@ -1,12 +1,13 @@
 function OffensiveInvaders(ctx, canvas) {
   this.invaders = [[], [], [], [], []];
   this.invaderOvni = {};
-  this.alives = 0;
   this.offensivesLines = 5;
   this.invadersPerLine = 10;
+  this.alives = this.offensivesLines*this.invadersPerLine;
   this.createInvadersMatrix = function() {
     var resolucion = canvas.width/canvas.height;
     var invader = {};
+    var ovni = {};
     var offsetX = 30;
     var offsetY = offsetX/resolucion;
     var gapOvni = 60;
@@ -62,7 +63,6 @@ function OffensiveInvaders(ctx, canvas) {
         }
       }
     }
-      
   };
     this.createOvni = function(){
       var resolucion = canvas.width/canvas.height;
@@ -70,23 +70,37 @@ function OffensiveInvaders(ctx, canvas) {
       var offsetX = 30;
       var offsetY = offsetX/resolucion;
       var gapOvni = 50;
-      ovni = new Invader("ovni");
-      ovni.image = new Image();
-      ovni.image.src =
+      this.invaderOvni = new Invader("ovni");
+      this.invaderOvni.image = new Image();
+      this.invaderOvni.image.src =
         "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/ovni invader.gif";
-      invader.x = 0;
-      invader.y = 30;
-      invader.horizontalSpeed = 4;
+      this.invaderOvni.x = 0;
+      this.invaderOvni.y = 30;
+      this.invaderOvni.horizontalSpeed = 4;
+      this.invaderOvni.isAlive = true;
   };
 
   this.drawInvaders = function() {
+   ctx.drawImage(this.invaderOvni.image, this.invaderOvni.x,this.invaderOvni.y, this.invaderOvni.width, this.invaderOvni.height );
     for (var i = 0; i < this.offensivesLines; i++) {
       for (var j = 0; j < this.invadersPerLine; j++) {
         ctx.drawImage(this.invaders[i][j].image, this.invaders[i][j].x,this.invaders[i][j].y, this.invaders[i][j].width, this.invaders[i][j].height )
       }
     }
   };
+  this.moveInvaders = function(){
+    for (var i = 0; i < this.offensivesLines; i++) {
+      for (var j = 0; j < this.invadersPerLine; j++) { 
+        this.invaders[i][j].x += this.invaders[i][j].horizontalSpeed;
+      }
+    }
+  }  
+  this.moveOvni = function(){
+    this.invaderOvni.x += this.invaderOvni.horizontalSpeed;
+  }
+
 }
+
 
 function Invader(typeInvader) {
   this.type = typeInvader;

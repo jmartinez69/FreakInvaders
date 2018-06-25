@@ -32,8 +32,10 @@ function FreakInvaders() {
   this.defensepod = new DefensePod(this.ctx, this.canvas);
   this.freakinvaders = new OffensiveInvaders(this.ctx, this.canvas);
   this.freakinvaders.createInvadersMatrix();
+  this.freakinvaders.createOvni();
   this.updateCanvas = function() {
     that.background.move();
+    that.freakinvaders.moveOvni();
     that.ctx.clearRect(0, 0, that.canvas.width, that.canvas.height);
     that.background.drawBackground();
     that.defensepod.drawDefense();
