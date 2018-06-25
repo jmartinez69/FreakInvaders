@@ -121,7 +121,7 @@ function OffensiveInvaders(ctx, canvas) {
       }
     }
   }   
-  }
+
 
   this.drawInvaders = function() {
     ctx.drawImage(
@@ -146,16 +146,33 @@ function OffensiveInvaders(ctx, canvas) {
 
 
   this.moveInvaders = function() {
-    var lastVertical = this.lastVerticalDefence();
-    if (lastVertical.orientacion == "right") {
-      if (this.)
-      for (var i = 0; i < this.offensivesLines; i++) {
-        for (var j = 0; j < this.invadersPerLine; j++) {
-          this.invaders[i][j].x += this.invaders[i][j].horizontalSpeed;
+    var lastVD = this.lastVerticalDefence();
+    if (lastVD.orientacion == "right") {
+      if (this.invaders[lastVD.lastY][lastVD.lastX].x < canvas.width-(this.invaders[lastVD.lastY][lastVD.lastX].width)){
+        for (var i = 0; i < this.offensivesLines; i++) {
+          for (var j = 0; j < this.invadersPerLine; j++) {
+            this.invaders[i][j].x += this.invaders[i][j].horizontalSpeed;
+          }
         }
+      }
+      else {
+        this.invadersChangeOrientation();
+        this.downOnelineOfDefense();
+      }
+    } else {
+        if (this.invaders[lastVD.lastY][lastVD.lastX].x > 0){
+          for (var i = 0; i < this.offensivesLines; i++) {
+            for (var j = 0; j < this.invadersPerLine; j++) {
+              this.invaders[i][j].x += this.invaders[i][j].horizontalSpeed;
+          }
+        }
+      } else {
+        this.invadersChangeOrientation();
+        this.downOnelineOfDefense();        
       }
     }
   };
+
   this.moveOvni = function() {
     if (this.invaderOvni.isAlive) {
       if (this.invaderOvni.x < canvas.width) {
@@ -163,6 +180,7 @@ function OffensiveInvaders(ctx, canvas) {
       }
     }
   };
+
 }
 
 function Invader(typeInvader) {
@@ -175,12 +193,4 @@ function Invader(typeInvader) {
   this.height = 25;
   this.horizontalSpeed = 0.2;
 }
-/*
-function InvaderOvni() {
-  this.type="";
-  this.image="";
-  this.isAlive=true;
-  this.x=0;
-  this.y=0;
-  this.horizontalSpeed=1;
-}*/
+
