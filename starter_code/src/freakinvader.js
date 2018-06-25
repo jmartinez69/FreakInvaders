@@ -9,7 +9,7 @@ function OffensiveInvaders(ctx, canvas) {
     var invader = {};
     var offsetX = 30;
     var offsetY = offsetX/resolucion;
-    var gapOvni = 50;
+    var gapOvni = 60;
     for (var i = 0; i < this.offensivesLines; i++) {
       for (var j = 0; j < this.invadersPerLine; j++) {
         switch (i) {
@@ -62,7 +62,23 @@ function OffensiveInvaders(ctx, canvas) {
         }
       }
     }
+      
   };
+    this.createOvni = function(){
+      var resolucion = canvas.width/canvas.height;
+      var ovni = {};
+      var offsetX = 30;
+      var offsetY = offsetX/resolucion;
+      var gapOvni = 50;
+      ovni = new Invader("ovni");
+      ovni.image = new Image();
+      ovni.image.src =
+        "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/ovni invader.gif";
+      invader.x = 0;
+      invader.y = 30;
+      invader.horizontalSpeed = 4;
+  };
+
   this.drawInvaders = function() {
     for (var i = 0; i < this.offensivesLines; i++) {
       for (var j = 0; j < this.invadersPerLine; j++) {
