@@ -1,4 +1,6 @@
 function OffensiveInvaders(ctx, canvas) {
+  this.ctx=ctx;
+  this.canvas=canvas;
   this.invaders = [[], [], [], [], []];
   this.invaderOvni = {};
   this.offensivesLines = 5;
@@ -19,47 +21,35 @@ function OffensiveInvaders(ctx, canvas) {
             invader.image = new Image();
             invader.image.src =
               "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/green invader.gif";
-            invader.x = j * 2 * offsetX + offsetX;
-            invader.y = i * 2 * offsetY + offsetY + gapOvni;
-            this.invaders[i].push(invader);
             break;
           case 1:
             invader = new Invader("blue");
             invader.image = new Image();
             invader.image.src =
               "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/blue invader.gif";
-            invader.x = j * 2 * offsetX + offsetX;
-            invader.y = i * 2 * offsetY + offsetY + gapOvni;
-            this.invaders[i].push(invader);
             break;
           case 2:
             invader = new Invader("red");
             invader.image = new Image();
             invader.image.src =
               "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/red invader.gif";
-            invader.x = j * 2 * offsetX + offsetX;
-            invader.y = i * 2 * offsetY + offsetY + gapOvni;
-            this.invaders[i].push(invader);
             break;
           case 3:
             invader = new Invader("grey");
             invader.image = new Image();
             invader.image.src =
               "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/grey invader.gif";
-            invader.x = j * 2 * offsetX + offsetX;
-            invader.y = i * 2 * offsetY + offsetY + gapOvni;
-            this.invaders[i].push(invader);
             break;
           case 4:
             invader = new Invader("grey");
             invader.image = new Image();
             invader.image.src =
               "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/grey invader.gif";
-            invader.x = j * 2 * offsetX + offsetX;
-            invader.y = i * 2 * offsetY + offsetY + gapOvni;
-            this.invaders[i].push(invader);
             break;
         }
+        invader.x = j * 2 * offsetX + offsetX;
+        invader.y = i * 2 * offsetY + offsetY + gapOvni;
+        this.invaders[i].push(invader);
       }
     }
   };
@@ -183,6 +173,7 @@ function OffensiveInvaders(ctx, canvas) {
 
 }
 
+//ESTRUCTURA CONSTRUCTRA DE ALIENIGENAS
 function Invader(typeInvader) {
   this.type = typeInvader;
   this.image = "";

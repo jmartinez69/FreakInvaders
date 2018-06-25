@@ -1,73 +1,32 @@
-var hangman;
-
-function Hangman() {
-  this.words = ["IRONHACK", "TELEFONO", "CASA", "Animal", "Perro", "Ingeniero"];
-  this.secretWord = "";
-  this.letters = [];
-  this.guessedLetter = "";
-  this.errorsLeft = 10;
-  this.hangmancanvas = new HangmanCanvas(this.getWord());
+function Shoot(ctx, canvas) {
+  this.ctx = ctx;
+  this.canvas = canvas;
+  this.shootBoolean = false;
+  this.x = 0;
+  this.y = canvas.height;
+  this.shootLineOffset = 10;
+  this.direccion = "up";
+  this.shootSpeed = -5;
 }
 
-Hangman.prototype.getWord = function () {
-  if (this.words.length > 0){
-    return (this.words[Math.floor(Math.random()*this.words.length)]);
-  } else {
-    return "";
+Shoot.prototype.moveShoot = function() {
+  for (var i; i < shootsArray.length; i++){
+    if (this.direccion == "up") {
+      this.y += this.shootSpeed;
+    }
   }
-};
-
-Hangman.prototype.checkIfLetter = function (keyCode) {
-  if ((keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122)){
-    return true;
-  } else {
-    return false;
-  }
-};
-
-Hangman.prototype.checkClickedLetters = function (key) {
-  if (this.letters.indexOf(String.fromCharCode(key)) >= 0){
-    return true;
-  } else {
-    return false;
-  }
- };
-
-Hangman.prototype.addCorrectLetter = function (i) {
-  if (this.secretWord.indexOf(this.secretWord[i]) >= 0){
-    return this.guessedLetter += this.secretWord[i].toUpperCase();
-  }  
-};
-
-Hangman.prototype.addWrongLetter = function (letter) {
-    this.errorsLeft--;
 }
 
-Hangman.prototype.checkGameOver = function () {
-  if (this.errorsLeft == 0){
-    return true;
-  } else {
-    return false;
+Shoot.prototype.drawShoot = function() {
+  if (this.shootBoolean) {
+    this.ctx.save();
+    this.ctx.strokeStile = "#FF5733";
+    this.ctx.lineWidth = 1.1;
+    this.ctx.beginPath();
+    this.ctx.moveTo(this.x, this.y);
+    this.ctx.lineTo(thix.x, this.y + this.shootLineOffset);
+    this.ctx.stroke();
+    this.ctx.closePath();
+    this.ctx.restore();
   }
-};
-
-Hangman.prototype.checkWinner = function () {
-  if (this.secretWord.length == this.guessedLetter.length) {
-    return true;
-  } else {
-    return false;
-  }
-
-};
-
-document.getElementById('start-game-button').onclick = function () {
-  hangman = new Hangman();
-
-
-  
-};
-
-
-document.onkeydown = function (e) {
-
 };
