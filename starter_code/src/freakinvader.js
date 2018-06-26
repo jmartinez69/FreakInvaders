@@ -6,6 +6,7 @@ function OffensiveInvaders(ctx, canvas) {
   this.offensivesLines = 5;
   this.invadersPerLine = 10;
   this.alives = this.offensivesLines * this.invadersPerLine;
+  this.shootsArray=[];
   this.createInvadersMatrix = function() {
     var resolucion = canvas.width / canvas.height;
     var invader = {};
@@ -175,6 +176,8 @@ function OffensiveInvaders(ctx, canvas) {
 
 }
 
+
+
 //ESTRUCTURA CONSTRUCTORA DE ALIENIGENAS INDIVIDUALES
 function Invader(typeInvader) {
   this.type = typeInvader;
@@ -186,4 +189,3 @@ function Invader(typeInvader) {
   this.height = 25;
   this.horizontalSpeed = 0.2;
 }
-

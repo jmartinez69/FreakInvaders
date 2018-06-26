@@ -7,8 +7,6 @@ function FreakInvaders() {
   this.imageback.src = "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/stars900.gif";
   this.cleanBoard();
   this.background = new BackgroundImage(this.ctx, this.imageback, this.canvas);
-  this.shootsArray =[];
-
 
   this.freakinvaders = new OffensiveInvaders(this.ctx, this.canvas);
   this.freakinvaders.createInvadersMatrix();

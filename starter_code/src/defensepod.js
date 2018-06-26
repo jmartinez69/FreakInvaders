@@ -73,8 +73,7 @@ DefensePod.prototype.drawShoot = function(shootsArray) {
 };
 DefensePod.prototype.hitInvader = function(shoot) {
   var hit = false;
-  console.log(shoot)
-  console.log(this.freaks.invaders)
+
   for (var i = 0; i < this.freaks.offensivesLines; i++) {
     for (var j = 0; j < this.freaks.invadersPerLine; j++) {
       if (this.freaks.invaders[i][j].isAlive){
@@ -87,7 +86,7 @@ DefensePod.prototype.hitInvader = function(shoot) {
         ) {
           console.log("Entre en el condicional");
           this.freaks.invaders[i][j].isAlive = false;
-          this.shootBoolean = false;
+          shoot.shootBoolean = false;
           hit=true;
           this.freaks.alives--;
         }
