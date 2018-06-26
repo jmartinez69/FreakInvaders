@@ -18,7 +18,9 @@ function FreakInvaders() {
   var segundos=60;
   var numSeg=1;
   var contador=0;
+  this.ctx.save();
   this.updateCanvas = function() {
+
     contador++;
     that.background.move();
     that.freakinvaders.moveOvni();
@@ -38,9 +40,13 @@ function FreakInvaders() {
     that.defensepod.drawShoot();
     that.freakinvaders.drawInvaders();
 
+
     if (that.freakinvaders.shootsArray.length > 0){
         that.freakinvaders.shootsArray[0].drawShootOffensive();
     }
+    that.ctx.fillStyle = "white";
+    that.ctx.fillText("Puntuacion: " + that.defensepod.puntaje, 700, 30);
+
     requestAnimationFrame(that.updateCanvas);
   };
   this.imageback.onload = this.updateCanvas;
@@ -53,10 +59,12 @@ FreakInvaders.prototype.cleanBoard = function() {
 FreakInvaders.prototype.createRamdomOfShoots = function (){
     var line=Math.floor(Math.random()*this.freakinvaders.offensivesLines);
     var col=Math.floor(Math.random()* this.freakinvaders.invadersPerLine);
+    if (this.freakinvaders.invaders[line][col].isAlive){
     shoot = new ShootOffensive(this.ctx, this.canvas, this.freakinvaders.shootsArray, this.defensepod);
     shoot.x = this.freakinvaders.invaders[line][col].x+this.freakinvaders.invaders[line][col].width/2;
     shoot.y = this.freakinvaders.invaders[line][col].y + this.freakinvaders.invaders[line][col].height;
     this.freakinvaders.shootsArray.push(shoot); 
+    }
 }
 
 
@@ -95,8 +103,7 @@ document.getElementById("start-game-button").onclick = function() {
     case 68:
       newGame.defensepod.shoot();
       break;
-
-            
+           
   }
 };
   

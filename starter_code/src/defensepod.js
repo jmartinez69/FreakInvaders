@@ -10,6 +10,7 @@ function DefensePod(ctx, canvas, freakinvaders) {
   this.limitX = canvas.width - this.anchoPod;
   this.shootsArray = [];
   this.freaks=freakinvaders;
+  this.puntaje=0;
 }
 DefensePod.prototype.drawDefense = function() {
   this.ctx.save();
@@ -32,7 +33,6 @@ DefensePod.prototype.moveRight = function() {
     this.posX += this.speed;
   }
 };
-
 
 
 DefensePod.prototype.shoot = function() {
@@ -84,11 +84,25 @@ DefensePod.prototype.hitInvader = function(shoot) {
             shoot.y < this.freaks.invaders[i][j].y + this.freaks.invaders[i][j].height &&
             shoot.y + shoot.shootLineOffset > this.freaks.invaders[i][j].y) 
         ) {
-          console.log("Entre en el condicional");
+          switch (this.freaks.invaders[i][j].type){
+            case "grey": this.puntaje = this.puntaje + 10;
+                         break;
+            case "red": this.puntaje = this.puntaje + 20;
+                         break;     
+            case "blue": this.puntaje = this.puntaje + 20;
+                         break;
+            case "green": this.puntaje = this.puntaje + 30;
+                         break;    
+            case "ovni": this.puntaje = this.puntaje + 100;
+                         break;                                                                            
+          }
           this.freaks.invaders[i][j].isAlive = false;
           shoot.shootBoolean = false;
           hit=true;
           this.freaks.alives--;
+          if (this.freaks.alives == 0){
+            alert("FIN DE NIVEL")
+          }
         }
 //    FIN DE CONDICION DE COLISOINES
       }

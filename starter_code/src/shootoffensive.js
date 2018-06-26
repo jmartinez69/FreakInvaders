@@ -6,7 +6,7 @@ function ShootOffensive(ctx, canvas, freaksShootArray, defensePod) {
   this.y = 0;
   this.shootLineOffset = 20;
   this.direccion = "down";
-  this.shootSpeed = 1;
+  this.shootSpeed = 3;
   this.shootsArray=freaksShootArray;
   this.defensePod=defensePod;
 }
@@ -56,7 +56,7 @@ ShootOffensive.prototype.hitDefensePod = function(shoot) {
         shoot.shootBoolean = false;
         hit=true;
         this.defensePod.vidas--;
-        if (this.vidas == 0){
+        if (this.defensePod.vidas == 0){
           alert("GAME OVER");
         }
       }
