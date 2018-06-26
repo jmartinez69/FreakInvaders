@@ -1,4 +1,4 @@
-function DefensePod(ctx, canvas, game) {
+function DefensePod(ctx, canvas, freakinvaders) {
   this.ctx = ctx;
   this.canvas = canvas;
   this.posX = 20;
@@ -9,6 +9,7 @@ function DefensePod(ctx, canvas, game) {
   this.altoPod = 5;
   this.limitX = canvas.width - this.anchoPod;
   this.shootsArray = [];
+  this.freaks=freakinvaders;
 }
 DefensePod.prototype.drawDefense = function() {
   this.ctx.save();
@@ -32,25 +33,8 @@ DefensePod.prototype.moveRight = function() {
   }
 };
 
-DefensePod.prototype.hitInvader = function(shoot) {
-  var hit = false;
-  for (var i = 0; i < game.offensivesLines; i++) {
-    for (var j = 0; j < game.invadersPerLine; j++) {
-      if (
-        shoot.x >= game.invaders[i][j].x &&
-        shoot.x <= game.invaders[i][j].x + game.invaders[i][j].width &&
-        shoot.y + shoot.shootLineOffset >=
-          game.invaders[i][j].y + game.invaders[i][j].height
-      ) {
-        game.invaders[i][j].isAlive = false;
-        this.shootBoolean = false;
-        hit=true;
-        game.alives--;
-      }
-    }
-  }
-  return hit;
-};
+
+
 DefensePod.prototype.shoot = function() {
   var newShoot = new Shoot(this.ctx, this.canvas);
   newShoot.x = this.posX;
@@ -61,10 +45,11 @@ DefensePod.prototype.shoot = function() {
 DefensePod.prototype.moveShoot = function() {
   for (var i = 0; i < this.shootsArray.length; i++) {
     if (this.shootsArray[i].direccion == "up") {
-      if (this.shootsArray[i].y > 0 || this.hitInvader(this.shootsArray[i])) {
-        this.shootsArray[i].y += this.shootsArray[i].shootSpeed;
-      } else {
+      if (this.shootsArray[i].y < 0 || this.hitInvader(this.shootsArray[i])) {
+        console.log('entra')
         this.shootsArray.splice(i, 1);
+      } else {
+        this.shootsArray[i].y += this.shootsArray[i].shootSpeed;
       }
     }
   }
@@ -86,6 +71,33 @@ DefensePod.prototype.drawShoot = function(shootsArray) {
       this.ctx.restore();
     }
   }
+};
+DefensePod.prototype.hitInvader = function(shoot) {
+  var hit = false;
+  console.log(shoot)
+  console.log(this.freaks.invaders)
+  for (var i = 0; i < this.freaks.offensivesLines; i++) {
+    for (var j = 0; j < this.freaks.invadersPerLine; j++) {
+
+      
+
+
+
+      if (
+        (shoot.x < this.freaks.invaders[i][j].x + this.freaks.invaders[i][j].width  &&
+          shoot.x  > this.freaks.invaders[i][j].x &&
+          shoot.y < this.freaks.invaders[i][j].y + this.freaks.invaders[i][j].height &&
+          shoot.y + shoot.shootLineOffset > this.freaks.invaders[i][j].y) 
+      ) {
+        console.log("Entre en el condicional");
+        this.freaks.invaders[i][j].isAlive = false;
+        this.shootBoolean = false;
+        hit=true;
+        this.freaks.alives--;
+      }
+    }
+  }
+  return hit;
 };
 
 // ESTRUCTURA CONSTRUCTURA DISPAROS INDIVIDUALES

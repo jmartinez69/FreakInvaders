@@ -9,10 +9,11 @@ function FreakInvaders() {
   this.background = new BackgroundImage(this.ctx, this.imageback, this.canvas);
   this.shootsArray =[];
 
-  this.defensepod = new DefensePod(this.ctx, this.canvas);
+
   this.freakinvaders = new OffensiveInvaders(this.ctx, this.canvas);
   this.freakinvaders.createInvadersMatrix();
   this.freakinvaders.createOvni();
+  this.defensepod = new DefensePod(this.ctx, this.canvas, this.freakinvaders);
   that=this;
   this.updateCanvas = function() {
     that.background.move();
@@ -26,7 +27,6 @@ function FreakInvaders() {
     that.freakinvaders.drawInvaders();
     requestAnimationFrame(that.updateCanvas);
   };
-  console.log("llamando a update canvas");
   this.imageback.onload = this.updateCanvas;
 }
 
@@ -62,13 +62,13 @@ document.getElementById("start-game-button").onclick = function() {
   document.onkeydown = function(e) {
   switch (e.keyCode) {
     case 37:
-      newGame.defensepod.moveLeft(newGame.ctx, newGame.canvas);
+      newGame.defensepod.moveLeft();
       break;
     case 39:
-      newGame.defensepod.moveRight(newGame.ctx, newGame.canvas);
+      newGame.defensepod.moveRight();
       break;
     case 68:
-      newGame.defensepod.shoot(newGame.ctx, newGame.canvas, newGame);
+      newGame.defensepod.shoot();
       break;
 
             
