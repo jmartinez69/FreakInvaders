@@ -46,7 +46,6 @@ DefensePod.prototype.moveShoot = function() {
   for (var i = 0; i < this.shootsArray.length; i++) {
     if (this.shootsArray[i].direccion == "up") {
       if (this.shootsArray[i].y < 0 || this.hitInvader(this.shootsArray[i])) {
-        console.log('entra')
         this.shootsArray.splice(i, 1);
       } else {
         this.shootsArray[i].y += this.shootsArray[i].shootSpeed;
@@ -78,22 +77,21 @@ DefensePod.prototype.hitInvader = function(shoot) {
   console.log(this.freaks.invaders)
   for (var i = 0; i < this.freaks.offensivesLines; i++) {
     for (var j = 0; j < this.freaks.invadersPerLine; j++) {
-
-      
-
-
-
-      if (
-        (shoot.x < this.freaks.invaders[i][j].x + this.freaks.invaders[i][j].width  &&
-          shoot.x  > this.freaks.invaders[i][j].x &&
-          shoot.y < this.freaks.invaders[i][j].y + this.freaks.invaders[i][j].height &&
-          shoot.y + shoot.shootLineOffset > this.freaks.invaders[i][j].y) 
-      ) {
-        console.log("Entre en el condicional");
-        this.freaks.invaders[i][j].isAlive = false;
-        this.shootBoolean = false;
-        hit=true;
-        this.freaks.alives--;
+      if (this.freaks.invaders[i][j].isAlive){
+//    CONDICION DE COLISIONES
+        if (
+          (shoot.x < this.freaks.invaders[i][j].x + this.freaks.invaders[i][j].width  &&
+            shoot.x  > this.freaks.invaders[i][j].x &&
+            shoot.y < this.freaks.invaders[i][j].y + this.freaks.invaders[i][j].height &&
+            shoot.y + shoot.shootLineOffset > this.freaks.invaders[i][j].y) 
+        ) {
+          console.log("Entre en el condicional");
+          this.freaks.invaders[i][j].isAlive = false;
+          this.shootBoolean = false;
+          hit=true;
+          this.freaks.alives--;
+        }
+//    FIN DE CONDICION DE COLISOINES
       }
     }
   }
