@@ -68,7 +68,7 @@ document.getElementById("start-game-button").onclick = function() {
       newGame.defensepod.moveRight(newGame.ctx, newGame.canvas);
       break;
     case 68:
-      newGame.defensepod.shoot(newGame.ctx, newGame.canvas, newGame.freakinvaders);
+      newGame.defensepod.shoot(newGame.ctx, newGame.canvas, newGame);
       break;
 
             

@@ -1,4 +1,4 @@
-function DefensePod(ctx, canvas, freakinvaders) {
+function DefensePod(ctx, canvas, game) {
   this.ctx = ctx;
   this.canvas = canvas;
   this.posX = 20;
@@ -31,20 +31,40 @@ DefensePod.prototype.moveRight = function() {
     this.posX += this.speed;
   }
 };
+
+DefensePod.prototype.hitInvader = function(shoot) {
+  var hit = false;
+  for (var i = 0; i < game.offensivesLines; i++) {
+    for (var j = 0; j < game.invadersPerLine; j++) {
+      if (
+        shoot.x >= game.invaders[i][j].x &&
+        shoot.x <= game.invaders[i][j].x + game.invaders[i][j].width &&
+        shoot.y + shoot.shootLineOffset >=
+          game.invaders[i][j].y + game.invaders[i][j].height
+      ) {
+        game.invaders[i][j].isAlive = false;
+        this.shootBoolean = false;
+        hit=true;
+        game.alives--;
+      }
+    }
+  }
+  return hit;
+};
 DefensePod.prototype.shoot = function() {
   var newShoot = new Shoot(this.ctx, this.canvas);
   newShoot.x = this.posX;
   newShoot.y = this.posY + this.altoPod;
   this.shootsArray.push(newShoot);
-
 };
+
 DefensePod.prototype.moveShoot = function() {
-  for (var i=0; i < this.shootsArray.length; i++) {
+  for (var i = 0; i < this.shootsArray.length; i++) {
     if (this.shootsArray[i].direccion == "up") {
-      if (this.shootsArray[i].y > 0){
-         this.shootsArray[i].y += this.shootsArray[i].shootSpeed;
+      if (this.shootsArray[i].y > 0 || this.hitInvader(this.shootsArray[i])) {
+        this.shootsArray[i].y += this.shootsArray[i].shootSpeed;
       } else {
-         this.shootsArray.splice(i,1);
+        this.shootsArray.splice(i, 1);
       }
     }
   }
@@ -68,8 +88,7 @@ DefensePod.prototype.drawShoot = function(shootsArray) {
   }
 };
 
-
-// ESTRUCTURA CONSTRUCTURA DISPAROS
+// ESTRUCTURA CONSTRUCTURA DISPAROS INDIVIDUALES
 function Shoot(ctx, canvas) {
   this.ctx = ctx;
   this.canvas = canvas;
@@ -80,5 +99,3 @@ function Shoot(ctx, canvas) {
   this.direccion = "up";
   this.shootSpeed = -4;
 }
-
-

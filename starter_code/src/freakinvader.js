@@ -123,13 +123,15 @@ function OffensiveInvaders(ctx, canvas) {
     );
     for (var i = 0; i < this.offensivesLines; i++) {
       for (var j = 0; j < this.invadersPerLine; j++) {
-        ctx.drawImage(
-          this.invaders[i][j].image,
-          this.invaders[i][j].x,
-          this.invaders[i][j].y,
-          this.invaders[i][j].width,
-          this.invaders[i][j].height
-        );
+        if (this.invaders[i][j].isAlive){
+          ctx.drawImage(
+            this.invaders[i][j].image,
+            this.invaders[i][j].x,
+            this.invaders[i][j].y,
+            this.invaders[i][j].width,
+            this.invaders[i][j].height
+          );
+        }
       }
     }
   };
@@ -173,7 +175,7 @@ function OffensiveInvaders(ctx, canvas) {
 
 }
 
-//ESTRUCTURA CONSTRUCTRA DE ALIENIGENAS
+//ESTRUCTURA CONSTRUCTORA DE ALIENIGENAS INDIVIDUALES
 function Invader(typeInvader) {
   this.type = typeInvader;
   this.image = "";
