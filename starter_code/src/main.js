@@ -12,17 +12,35 @@ function FreakInvaders() {
   this.freakinvaders.createInvadersMatrix();
   this.freakinvaders.createOvni();
   this.defensepod = new DefensePod(this.ctx, this.canvas, this.freakinvaders);
+  
+
   that=this;
+  var segundos=60;
+  var numSeg=1;
+  var contador=0;
   this.updateCanvas = function() {
+    contador++;
     that.background.move();
     that.freakinvaders.moveOvni();
     that.freakinvaders.moveInvaders();
     that.defensepod.moveShoot();
+    if (contador == numSeg*segundos) {
+        that.createRamdomOfShoots();
+        contador = 0;
+    }
+    if (that.freakinvaders.shootsArray.length > 0){
+        that.freakinvaders.shootsArray[0].moveShootOffensive();
+    }
+
     that.ctx.clearRect(0, 0, that.canvas.width, that.canvas.height);
     that.background.drawBackground();
     that.defensepod.drawDefense();
     that.defensepod.drawShoot();
     that.freakinvaders.drawInvaders();
+
+    if (that.freakinvaders.shootsArray.length > 0){
+        that.freakinvaders.shootsArray[0].drawShootOffensive();
+    }
     requestAnimationFrame(that.updateCanvas);
   };
   this.imageback.onload = this.updateCanvas;
@@ -32,6 +50,15 @@ FreakInvaders.prototype.cleanBoard = function() {
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 };
+FreakInvaders.prototype.createRamdomOfShoots = function (){
+    var line=Math.floor(Math.random()*this.freakinvaders.offensivesLines);
+    var col=Math.floor(Math.random()* this.freakinvaders.invadersPerLine);
+    shoot = new ShootOffensive(this.ctx, this.canvas, this.freakinvaders.shootsArray, this.defensepod);
+    shoot.x = this.freakinvaders.invaders[line][col].x+this.freakinvaders.invaders[line][col].width/2;
+    shoot.y = this.freakinvaders.invaders[line][col].y + this.freakinvaders.invaders[line][col].height;
+    this.freakinvaders.shootsArray.push(shoot); 
+}
+
 
 function BackgroundImage(ctx, image, canvas) {
   this.y = 0;

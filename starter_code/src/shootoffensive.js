@@ -3,11 +3,10 @@ function ShootOffensive(ctx, canvas, freaksShootArray, defensePod) {
   this.canvas = canvas;
   this.shootBoolean = true;
   this.x = 0;
-  this.y = canvas.height;
+  this.y = 0;
   this.shootLineOffset = 20;
   this.direccion = "down";
-  this.shootSpeed = 4;
-  this.game=game;
+  this.shootSpeed = 1;
   this.shootsArray=freaksShootArray;
   this.defensePod=defensePod;
 }
@@ -48,11 +47,12 @@ ShootOffensive.prototype.hitDefensePod = function(shoot) {
   var hit = false;
 //    CONDICION DE COLISIONES
   if (
-      (shoot.x < this.defensePod.x + this.defensePod.anchoPod  &&
-       shoot.x  > this.defensePod.x &&
-       shoot.y < this.defensePod.y - 10 &&
-       shoot.y + shoot.shootLineOffset > this.defensePod.y) 
+      (shoot.x < this.defensePod.posX + this.defensePod.anchoPod  &&
+       shoot.x  > this.defensePod.posX &&
+       shoot.y < this.defensePod.posY - 10 &&
+       shoot.y + shoot.shootLineOffset > this.defensePod.posY) 
       ) {
+        alert("ME DIERON");
         shoot.shootBoolean = false;
         hit=true;
         this.defensePod.vidas--;
