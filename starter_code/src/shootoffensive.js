@@ -62,7 +62,7 @@ ShootOffensive.prototype.hitDefensePod = function(shoot) {
        shoot.y < this.defensePod.posY - 10 &&
        shoot.y + shoot.shootLineOffset > this.defensePod.posY) 
       ) {
-        alert("ME DIERON");
+        createjs.Sound.play("KillPod");
         shoot.shootBoolean = false;
         hit=true;
         this.defensePod.vidas--;

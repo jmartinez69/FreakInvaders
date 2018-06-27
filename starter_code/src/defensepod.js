@@ -105,6 +105,7 @@ DefensePod.prototype.hitInvader = function(shoot) {
       shoot.y < this.freaks.invaderOvni.y + this.freaks.invaderOvni.height &&
       shoot.y + shoot.shootLineOffset > this.freaks.invaderOvni.y
     ) {
+      createjs.Sound.play("KillOvni");
       this.puntaje = this.puntaje + 100;
       this.freaks.invaderOvni.isAlive = false;
       shoot.shootBoolean = false;
@@ -138,6 +139,7 @@ DefensePod.prototype.hitInvader = function(shoot) {
               this.puntaje = this.puntaje + 30;
               break;
             }
+              createjs.Sound.play("KillInvader");
               this.freaks.invaders[i][j].isAlive = false;
               shoot.shootBoolean = false;
               hit = true;

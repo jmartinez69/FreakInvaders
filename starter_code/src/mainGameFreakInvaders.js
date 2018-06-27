@@ -161,6 +161,22 @@ var keyCodes = {
   moverIzquierda: 37,
   teclaD: 68
 }
+// INICIALIZACION DE SONIDOS /////////////////////////////////////
+var audioPath = "sounds";
+var sounds = [
+    {id:"Defense", src:"defenseShoot.ogg"},
+    {id:"KillInvader", src:"invaderKill.ogg"},
+    {id:"KillOvni", src:"ovniKill.ogg"},
+    {id:"KillPod", src:"podKill.ogg"}
+];
+for (var i=0; i < sounds.length; i++){
+   registerPath=audioPath+"/"+sounds[i].src;
+   console.log(registerPath+ " "+sounds[i].id);
+   createjs.Sound.registerSound(registerPath, sounds[i].id);
+}
+//Defense="Defense";
+//createjs.Sound.registerSound("sounds/defenseShoot.ogg", "Defense");
+
 // SECCION DE COMIENZO DEL JUEGO Y CAPTURA DE TECLAS
 document.getElementById("start-game-button").onclick = function() {
   newGame = new GameFreakInvaders();
@@ -170,7 +186,8 @@ document.getElementById("start-game-button").onclick = function() {
                                     break;
       case keyCodes.moverDerecha:   newGame.defensepod.moveRight();
                                     break;
-      case keyCodes.teclaD:         newGame.defensepod.shoot();
+      case keyCodes.teclaD:         createjs.Sound.play("Defense");
+                                    newGame.defensepod.shoot();
                                     break;
     }
   };
