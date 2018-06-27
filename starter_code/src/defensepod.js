@@ -13,7 +13,10 @@ function DefensePod(ctx, canvas, freakinvaders) {
   this.freaks = freakinvaders;
   this.puntaje = 0;
 }
-// SECCION DE METODOS PROTOTIPO DE DEFENSEPOD
+/////////// SECCION DE METODOS PROTOTIPO DE DEFENSEPOD /////////////////////
+
+/* METODO DRAWDFENSE: Método encargado de dibujar el "pod" de defensa
+*/
 DefensePod.prototype.drawDefense = function() {
   this.ctx.save();
   this.ctx.fillStyle = "#1A7BC7";
@@ -25,17 +28,26 @@ DefensePod.prototype.drawDefense = function() {
   this.ctx.closePath();
   this.ctx.restore();
 };
+
+/* METODO MOVELEFT: Encargado de mover el "pod" a la izquierda
+*/
 DefensePod.prototype.moveLeft = function() {
   if (this.posX > 0) {
     this.posX -= this.speed;
   }
 };
+
+/* METODO MOVELEFT: Encargado de mover el "pod" a la derecha
+*/
 DefensePod.prototype.moveRight = function() {
   if (this.posX < this.canvas.width - this.anchoPod) {
     this.posX += this.speed;
   }
 };
 
+/* METODO SHOOT: Encargado de crear los disparos y agregarlos al arreglo de disparos
+   realizado por el "pod"
+*/
 DefensePod.prototype.shoot = function() {
   var newShoot = new Shoot(this.ctx, this.canvas);
   newShoot.x = this.posX;
@@ -43,6 +55,9 @@ DefensePod.prototype.shoot = function() {
   this.shootsArray.push(newShoot);
 };
 
+/* METODO MOVESHOOT: Encargado de mover todos los disparos realizados por el "pod" del
+   arreglo de disparos
+*/
 DefensePod.prototype.moveShoot = function() {
   for (var i = 0; i < this.shootsArray.length; i++) {
     if (this.shootsArray[i].direccion == "up") {
@@ -54,6 +69,10 @@ DefensePod.prototype.moveShoot = function() {
     }
   }
 };
+
+/* METODO DRAWSHOOT: Encargado de dibujar los disparos del "pod" de todo el array
+   de disparos.
+*/
 DefensePod.prototype.drawShoot = function(shootsArray) {
   for (var i = 0; i < this.shootsArray.length; i++) {
     if (this.shootsArray[i].shootBoolean) {
@@ -72,6 +91,10 @@ DefensePod.prototype.drawShoot = function(shootsArray) {
     }
   }
 };
+
+/* METODO HITINVADER: Encargado de validar si algún disparo ha colisionado con algún
+   elemento de la matriz de invasores o el OVNI.
+*/
 DefensePod.prototype.hitInvader = function(shoot) {
   var hit = false;
 

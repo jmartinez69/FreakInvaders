@@ -11,6 +11,11 @@ function OffensiveInvaders(ctx, canvas, level) {
 
 }
 
+////////// SECCION DE METODOS PROTOTIPOS DE OFFENSIVEINVADERS ////////////
+
+/* METODO CREATEINVADERSMATRIX: Método encargado de de crear la matriz con todos los
+   atacantes alienígenas, salvo el ovni
+*/
 OffensiveInvaders.prototype.createInvadersMatrix = function() {
   var resolucion = this.canvas.width / this.canvas.height;
   var invader = {};
@@ -60,7 +65,9 @@ OffensiveInvaders.prototype.createInvadersMatrix = function() {
     }
   }
 };
-
+/* METODO DE CREACION DE OVNI: Creación del Objeto OVNI que será
+   creado por el juego cada 10 segundos
+*/
 OffensiveInvaders.prototype.createOvni = function() {
   var resolucion = this.canvas.width / this.canvas.height;
   var ovni = {};
@@ -77,7 +84,12 @@ OffensiveInvaders.prototype.createOvni = function() {
   this.invaderOvni.isAlive = true;
 };
 
-
+/* METODO LASTVERTICALDEFENCE: Permite validar cual columna de los atacantes
+   queda viva para que una vez choque contra la pared (derecha o izquierda)
+   pueda bajar y cambiar de dirección a la matriz de atacantes
+   Devuelve: Indices de la matriz de algún elemento que este vivo en la última
+             columna
+*/
 OffensiveInvaders.prototype.lastVerticalDefence = function() {
   var lastVD = {};
   if (this.invaders[0][0].horizontalSpeed > 0) {
@@ -118,47 +130,9 @@ OffensiveInvaders.prototype.lastVerticalDefence = function() {
     }
 
     
-
- /* this.moveInvaders = function() {
-    var lastVD = this.lastVerticalDefence();
-    if (lastVD.orientacion == "right") {
-      if (this.invaders[lastVD.lastY][lastVD.lastX].x < this.canvas.width-(this.invaders[lastVD.lastY][lastVD.lastX].width)){
-        for (var i = 0; i < this.offensivesLines; i++) {
-          for (var j = 0; j < this.invadersPerLine; j++) {
-            this.invaders[i][j].x += this.invaders[i][j].horizontalSpeed;
-          }
-        }
-      }
-      else {
-        this.invadersChangeOrientation();
-        this.downOnelineOfDefense();
-      }
-    } else {
-        if (this.invaders[lastVD.lastY][lastVD.lastX].x > 0){
-          for (var i = 0; i < this.offensivesLines; i++) {
-            for (var j = 0; j < this.invadersPerLine; j++) {
-              this.invaders[i][j].x += this.invaders[i][j].horizontalSpeed;
-          }
-        }
-      } else {
-        this.invadersChangeOrientation();
-        this.downOnelineOfDefense();        
-      }
-    }
-  }
-
-  this.moveOvni = function() {
-    if (this.invaderOvni.isAlive) {
-      if (this.invaderOvni.x < this.canvas.width) {
-        this.invaderOvni.x += this.invaderOvni.horizontalSpeed;
-      } else {
-        this.invaderOvni.isAlive=false;
-      }
-    }
-  };*/
-
-
-
+/* METODO INVADERSCHANGEORIENTATION: Permite cambiar el sentido de la orientación
+   de los invasores cambiando el signo a la velocidad horizontal.
+*/
 OffensiveInvaders.prototype.invadersChangeOrientation = function (){    
   for (var i = 0; i < this.offensivesLines; i++) {
     for (var j = 0; j < this.invadersPerLine; j++) {
@@ -167,7 +141,9 @@ OffensiveInvaders.prototype.invadersChangeOrientation = function (){
   }
 }
 
-
+/* METODO INVADERSCHANGEORIENTATION: Realiza la labor de bajar toda la matriz de 
+   atacantes una linea
+*/
 OffensiveInvaders.prototype.downOnelineOfDefense = function(){
   for (var i = 0; i < this.offensivesLines; i++) {
     for (var j = 0; j < this.invadersPerLine; j++) {
@@ -176,7 +152,9 @@ OffensiveInvaders.prototype.downOnelineOfDefense = function(){
   }
 }   
 
-
+/* METODO DRAWINDAVERS: Este método se encargá de pintar todos los invasores (tanto el ovni
+ si esta vivo, como todos los elementos de la matriz de atacantes que vivan)
+*/
 OffensiveInvaders.prototype.drawInvaders = function() {
   if (this.invaderOvni.isAlive){
     this.ctx.drawImage(
@@ -202,6 +180,10 @@ OffensiveInvaders.prototype.drawInvaders = function() {
   }
 };
 
+/* METODO MOVEINVADERS: Método que permite mover las coordenadas "x" y "y" de la matriz de
+   invasores. Valida el primer elemento vivo en la última columna antes de pegar con la pared
+   y en caso de estar pegando, cambia la dirección y baja una linea.
+*/
 OffensiveInvaders.prototype.moveInvaders = function() {
   var lastVD = this.lastVerticalDefence();
   if (lastVD.orientacion == "right") {
@@ -230,6 +212,9 @@ OffensiveInvaders.prototype.moveInvaders = function() {
   }
 };
 
+/* METODO MOVEINVADERS: Método que permite mover las coordenadas "x" y "y" del objeto
+   ovni hasta que desaparece por la pared izquierda
+*/
 OffensiveInvaders.prototype.moveOvni = function() {
   if (this.invaderOvni.isAlive) {
     if (this.invaderOvni.x < this.canvas.width) {

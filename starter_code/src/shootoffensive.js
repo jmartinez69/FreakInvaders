@@ -11,7 +11,11 @@ function ShootOffensive(ctx, canvas, freaksShootArray, defensePod) {
   this.defensePod=defensePod;
 }
 
-// SECCION DE METODOS PROTOTIPOS DE SHOOTOFFENSIVE
+/////////////// SECCION DE METODOS PROTOTIPOS DE SHOOTOFFENSIVE //////////////////////////
+
+/* METODO MOVESHOOTOFFENSIVE: Encargado de mover los disparos que han sido generados aleatoriamente
+   por el juego en si, a través del arreglo de disparos
+*/
 ShootOffensive.prototype.moveShootOffensive = function() {
   for (var i = 0; i < this.shootsArray.length; i++) {
     if (this.shootsArray[i].direccion == "down") {
@@ -24,6 +28,9 @@ ShootOffensive.prototype.moveShootOffensive = function() {
   }
 };
 
+/* METODO DRAWSHOOTOFFENSIVE: Encargado de dibujar los disparos que han sido generados aleatoriamente
+   desde el juego.
+*/
 ShootOffensive.prototype.drawShootOffensive = function() {
   for (var i = 0; i < this.shootsArray.length; i++) {
     if (this.shootsArray[i].shootBoolean) {
@@ -43,6 +50,9 @@ ShootOffensive.prototype.drawShootOffensive = function() {
   }
 };
 
+/* METODO HITDEFENSEPOD: Metodo que valida si algún disparo generado por el juego ha colisionado
+   al "pod". Si es así le resta una vida. En caso que no queden vidas activa flag de GAMEOVER
+*/
 ShootOffensive.prototype.hitDefensePod = function(shoot) {
   var hit = false;
 //    CONDICION DE COLISIONES
