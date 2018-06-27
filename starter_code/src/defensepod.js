@@ -4,6 +4,7 @@ function DefensePod(ctx, canvas, freakinvaders) {
   this.posX = 20;
   this.posY = 580;
   this.vidas = 3;
+  this.gameOver= false;
   this.speed = 20;
   this.anchoPod = 40;
   this.altoPod = 5;

@@ -58,9 +58,10 @@ ShootOffensive.prototype.hitDefensePod = function(shoot) {
         this.defensePod.vidas--;
         if (this.defensePod.vidas == 0){
           alert("GAME OVER");
+          this.defensePod.gameOver = true;
         }
       }
-//    FIN DE CONDICION DE COLISOINES
+//    FIN DE CONDICION DE COLISIONES
   return hit;
 }
 

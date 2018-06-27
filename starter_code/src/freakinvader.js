@@ -1,4 +1,4 @@
-function OffensiveInvaders(ctx, canvas) {
+function OffensiveInvaders(ctx, canvas, level) {
   this.ctx=ctx;
   this.canvas=canvas;
   this.invaders = [[], [], [], [], []];
@@ -7,6 +7,7 @@ function OffensiveInvaders(ctx, canvas) {
   this.invadersPerLine = 10;
   this.alives = this.offensivesLines * this.invadersPerLine;
   this.shootsArray=[];
+  this.level=level;
 
 }
 
@@ -53,6 +54,8 @@ OffensiveInvaders.prototype.createInvadersMatrix = function() {
       }
       invader.x = j * 2 * offsetX + offsetX;
       invader.y = i * 2 * offsetY + offsetY + gapOvni;
+      invader.horizontalSpeed = this.level * invader.horizontalSpeed;
+      invader.isAlive=true;
       this.invaders[i].push(invader);
     }
   }
@@ -100,7 +103,23 @@ OffensiveInvaders.prototype.lastVerticalDefence = function() {
       }
     }
   }
-  this.moveInvaders = function() {
+
+  OffensiveInvaders.prototype.lastHorizontalDefence = function() {
+    var lastHD = {};
+      for (var i = this.offensivesLines - 1; i >= 0; i--) {
+        for (var j = 0; j <  this.invadersPerLine; j++) {
+          if (this.invaders[i][j].isAlive) {
+            lastHD.lastX = j;
+            lastHD.lastY = i;
+            return lastHD;
+          }
+        }
+      }
+    }
+
+    
+
+ /* this.moveInvaders = function() {
     var lastVD = this.lastVerticalDefence();
     if (lastVD.orientacion == "right") {
       if (this.invaders[lastVD.lastY][lastVD.lastX].x < this.canvas.width-(this.invaders[lastVD.lastY][lastVD.lastX].width)){
@@ -126,16 +145,18 @@ OffensiveInvaders.prototype.lastVerticalDefence = function() {
         this.downOnelineOfDefense();        
       }
     }
-  };
+  }
 
   this.moveOvni = function() {
     if (this.invaderOvni.isAlive) {
       if (this.invaderOvni.x < this.canvas.width) {
         this.invaderOvni.x += this.invaderOvni.horizontalSpeed;
+      } else {
+        this.invaderOvni.isAlive=false;
       }
     }
   };
-};
+}; */
 
 
 OffensiveInvaders.prototype.invadersChangeOrientation = function (){    
@@ -157,13 +178,15 @@ OffensiveInvaders.prototype.downOnelineOfDefense = function(){
 
 
 OffensiveInvaders.prototype.drawInvaders = function() {
-  this.ctx.drawImage(
-    this.invaderOvni.image,
-    this.invaderOvni.x,
-    this.invaderOvni.y,
-    this.invaderOvni.width,
-    this.invaderOvni.height
-  );
+  if (this.invaderOvni.isAlive){
+    this.ctx.drawImage(
+       this.invaderOvni.image,
+       this.invaderOvni.x,
+       this.invaderOvni.y,
+       this.invaderOvni.width,
+       this.invaderOvni.height
+      );
+  }
   for (var i = 0; i < this.offensivesLines; i++) {
     for (var j = 0; j < this.invadersPerLine; j++) {
       if (this.invaders[i][j].isAlive){
@@ -211,6 +234,8 @@ OffensiveInvaders.prototype.moveOvni = function() {
   if (this.invaderOvni.isAlive) {
     if (this.invaderOvni.x < this.canvas.width) {
       this.invaderOvni.x += this.invaderOvni.horizontalSpeed;
+    }else {
+      this.invaderOvni.isAlive=false;
     }
   }
 };
