@@ -11,7 +11,7 @@ function ShootOffensive(ctx, canvas, freaksShootArray, defensePod) {
   this.defensePod=defensePod;
 }
 
-
+// SECCION DE METODOS PROTOTIPOS DE SHOOTOFFENSIVE
 ShootOffensive.prototype.moveShootOffensive = function() {
   for (var i = 0; i < this.shootsArray.length; i++) {
     if (this.shootsArray[i].direccion == "down") {

@@ -1,4 +1,4 @@
-function FreakInvaders() {
+function GameFreakInvaders() {
   this.defencePoints = 0;
   this.actualLevel = 1;
   this.defensePodVidas=3;
@@ -81,13 +81,13 @@ function FreakInvaders() {
   };
   this.imageback.onload = this.updateCanvas;
 }
-
-FreakInvaders.prototype.cleanBoard = function() {
+// METODOS PROTOTIPOS DE GAMEFREAKINVADERS
+GameFreakInvaders.prototype.cleanBoard = function() {
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 };
 
-FreakInvaders.prototype.createRamdomOfShoots = function() {
+GameFreakInvaders.prototype.createRamdomOfShoots = function() {
   var line = Math.floor(Math.random() * this.freakinvaders.offensivesLines);
   var col = Math.floor(Math.random() * this.freakinvaders.invadersPerLine);
   if (this.freakinvaders.invaders[line][col].isAlive) {
@@ -130,7 +130,7 @@ BackgroundImage.prototype.drawBackground = function() {
 
 // SECCION DE COMIENZO DEL JUEGO Y CAPTURA DE TECLAS
 document.getElementById("start-game-button").onclick = function() {
-  newGame = new FreakInvaders();
+  newGame = new GameFreakInvaders();
 
   document.onkeydown = function(e) {
     switch (e.keyCode) {
