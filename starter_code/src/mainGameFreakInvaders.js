@@ -5,8 +5,7 @@ function GameFreakInvaders() {
   this.canvas = document.getElementById("freakinvaders");
   this.ctx = this.canvas.getContext("2d");
   this.imageback = new Image();
-  this.imageback.src =
-    "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/stars900.gif";
+  this.imageback.src = "images/stars900.gif";
   this.cleanBoard();
 
   // SECCION  DE CREACION DE TODOS LOS OBJETOS DEL JUEGO

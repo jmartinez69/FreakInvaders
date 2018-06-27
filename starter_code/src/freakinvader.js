@@ -29,32 +29,27 @@ OffensiveInvaders.prototype.createInvadersMatrix = function() {
         case 0:
           invader = new Invader("green");
           invader.image = new Image();
-          invader.image.src =
-            "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/green invader.gif";
+          invader.image.src = "images/green invader.gif";
           break;
         case 1:
           invader = new Invader("blue");
           invader.image = new Image();
-          invader.image.src =
-            "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/blue invader.gif";
+          invader.image.src = "images/blue invader.gif";
           break;
         case 2:
           invader = new Invader("red");
           invader.image = new Image();
-          invader.image.src =
-            "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/red invader.gif";
+          invader.image.src = "images/red invader.gif";
           break;
         case 3:
           invader = new Invader("grey");
           invader.image = new Image();
-          invader.image.src =
-            "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/grey invader.gif";
+          invader.image.src = "images/grey invader.gif";
           break;
         case 4:
           invader = new Invader("grey");
           invader.image = new Image();
-          invader.image.src =
-            "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/grey invader.gif";
+          invader.image.src = "images/grey invader.gif";
           break;
       }
       invader.x = j * 2 * offsetX + offsetX;
@@ -76,8 +71,7 @@ OffensiveInvaders.prototype.createOvni = function() {
   var gapOvni = 50;
   this.invaderOvni = new Invader("ovni");
   this.invaderOvni.image = new Image();
-  this.invaderOvni.image.src =
-    "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/ovni invader.gif";
+  this.invaderOvni.image.src ="images/ovni invader.gif";
   this.invaderOvni.x = 0;
   this.invaderOvni.y = 30;
   this.invaderOvni.horizontalSpeed = 3;
