@@ -66,6 +66,7 @@ ShootOffensive.prototype.hitDefensePod = function(shoot) {
         shoot.shootBoolean = false;
         hit=true;
         this.defensePod.vidas--;
+        alert("TE QUEDAN "+this.defensePod.vidas+ " VIDAS");
         if (this.defensePod.vidas == 0){
           alert("GAME OVER");
           this.defensePod.gameOver = true;
