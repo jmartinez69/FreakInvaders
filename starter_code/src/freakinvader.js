@@ -73,7 +73,7 @@ OffensiveInvaders.prototype.createOvni = function() {
     "/home/jesusm/Ironhack/FreakInvaders/starter_code/images/ovni invader.gif";
   this.invaderOvni.x = 0;
   this.invaderOvni.y = 30;
-  this.invaderOvni.horizontalSpeed = 4;
+  this.invaderOvni.horizontalSpeed = 3;
   this.invaderOvni.isAlive = true;
 };
 
@@ -103,7 +103,7 @@ OffensiveInvaders.prototype.lastVerticalDefence = function() {
       }
     }
   }
-
+}; 
   OffensiveInvaders.prototype.lastHorizontalDefence = function() {
     var lastHD = {};
       for (var i = this.offensivesLines - 1; i >= 0; i--) {
@@ -155,8 +155,8 @@ OffensiveInvaders.prototype.lastVerticalDefence = function() {
         this.invaderOvni.isAlive=false;
       }
     }
-  };
-}; */
+  };*/
+
 
 
 OffensiveInvaders.prototype.invadersChangeOrientation = function (){    

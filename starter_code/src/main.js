@@ -21,6 +21,7 @@ function FreakInvaders() {
   var segundos = 60;
   var numSeg = 1;
   var contador = 0;
+  var contadorOvni = 0;
   this.ctx.save();
   this.updateCanvas = function() {
    if (that.defensepod.gameOver){
@@ -43,13 +44,18 @@ function FreakInvaders() {
       numSeg = numSeg - numSeg * 0.5;
     }
     contador++;
+    contadorOvni++;
     that.background.move();
     that.freakinvaders.moveOvni();
     that.freakinvaders.moveInvaders();
     that.defensepod.moveShoot();
-    if (contador >= 10 * segundos){
-      this.freakinvaders.createOvni();
+
+    if (contadorOvni >= segundos * 10){      
+      that.freakinvaders.createOvni();
+      contadorOvni=0;
+
     }
+
     if (contador >= numSeg * segundos) {
       that.createRamdomOfShoots();
       contador = 0;
