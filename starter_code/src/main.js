@@ -13,14 +13,12 @@ function FreakInvaders() {
   this.freakinvaders.createOvni();
   this.defensepod = new DefensePod(this.ctx, this.canvas, this.freakinvaders);
   
-
   that=this;
   var segundos=60;
   var numSeg=1;
   var contador=0;
   this.ctx.save();
   this.updateCanvas = function() {
-
     contador++;
     that.background.move();
     that.freakinvaders.moveOvni();
@@ -33,20 +31,16 @@ function FreakInvaders() {
     if (that.freakinvaders.shootsArray.length > 0){
         that.freakinvaders.shootsArray[0].moveShootOffensive();
     }
-
     that.ctx.clearRect(0, 0, that.canvas.width, that.canvas.height);
     that.background.drawBackground();
     that.defensepod.drawDefense();
     that.defensepod.drawShoot();
     that.freakinvaders.drawInvaders();
-
-
     if (that.freakinvaders.shootsArray.length > 0){
         that.freakinvaders.shootsArray[0].drawShootOffensive();
     }
     that.ctx.fillStyle = "white";
     that.ctx.fillText("Puntuacion: " + that.defensepod.puntaje, 700, 30);
-
     requestAnimationFrame(that.updateCanvas);
   };
   this.imageback.onload = this.updateCanvas;
@@ -56,6 +50,7 @@ FreakInvaders.prototype.cleanBoard = function() {
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 };
+
 FreakInvaders.prototype.createRamdomOfShoots = function (){
     var line=Math.floor(Math.random()*this.freakinvaders.offensivesLines);
     var col=Math.floor(Math.random()* this.freakinvaders.invadersPerLine);
@@ -88,7 +83,7 @@ BackgroundImage.prototype.drawBackground =function(){
   }
 }
 
-
+// SECCION DE COMIENZO DEL JUEGO Y CAPTURA DE TECLAS
 document.getElementById("start-game-button").onclick = function() {
   newGame = new FreakInvaders();
 
