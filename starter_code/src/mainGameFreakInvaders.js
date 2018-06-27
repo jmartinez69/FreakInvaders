@@ -156,20 +156,22 @@ BackgroundImage.prototype.drawBackground = function() {
   }
 };
 
+var keyCodes = {
+  moverDerecha: 39,
+  moverIzquierda: 37,
+  teclaD: 68
+}
 // SECCION DE COMIENZO DEL JUEGO Y CAPTURA DE TECLAS
 document.getElementById("start-game-button").onclick = function() {
   newGame = new GameFreakInvaders();
   document.onkeydown = function(e) {
     switch (e.keyCode) {
-      case 37:
-        newGame.defensepod.moveLeft();
-        break;
-      case 39:
-        newGame.defensepod.moveRight();
-        break;
-      case 68:
-        newGame.defensepod.shoot();
-        break;
+      case keyCodes.moverIzquierda: newGame.defensepod.moveLeft();
+                                    break;
+      case keyCodes.moverDerecha:   newGame.defensepod.moveRight();
+                                    break;
+      case keyCodes.teclaD:         newGame.defensepod.shoot();
+                                    break;
     }
   };
 };
