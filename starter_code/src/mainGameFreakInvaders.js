@@ -20,6 +20,10 @@ function GameFreakInvaders() {
   this.defensepod = new DefensePod(this.ctx, this.canvas, this.freakinvaders);
   // FIN DE SECCION DE CREACION INICIAL DE ELEMENTOS DEL JUEGO
 
+  // SECCION DE INICIALZACION DEL AUDIO DEL TEMA DEL JUEGO (LOOP INFINITO) ///
+  this.gameAudio = new Audio();
+  this.gameAudio.src = 'sounds/FreakInvadersTheme.ogg';
+  this.gameAudio.loop = true;
 
   /* SECCION DE VARIABLES: Se definen variables necesarias para la operatividad y generación
      aleatoria de elementos como los disparos */
@@ -180,13 +184,12 @@ for (var i=0; i < sounds.length; i++){
    console.log(registerPath+ " "+sounds[i].id);
    createjs.Sound.registerSound(registerPath, sounds[i].id);
 }
-//Defense="Defense";
-//createjs.Sound.registerSound("sounds/defenseShoot.ogg", "Defense");
 
 // SECCION DE COMIENZO DEL JUEGO Y CAPTURA DE TECLAS
 document.getElementById("start-game-button").onclick = function() {
-  createjs.Sound.play("FItheme");
+
   newGame = new GameFreakInvaders();
+  newGame.gameAudio.play();
   document.onkeydown = function(e) {
     switch (e.keyCode) {
       case keyCodes.moverIzquierda: newGame.defensepod.moveLeft();
