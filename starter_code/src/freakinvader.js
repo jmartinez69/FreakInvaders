@@ -209,6 +209,11 @@ OffensiveInvaders.prototype.moveInvaders = function() {
       this.downOnelineOfDefense();        
     }
   }
+  var lastHD = this.lastHorizontalDefence();
+  if ((this.invaders[lastHD.lastY][lastHD.lastX].y+this.invaders[lastHD.lastY][lastHD.lastX].height) >= this.canvas.height-15){
+        alert("LOS INVASORES HAN ATERRIZADO.... ESO ES TODO... GAME OVER");
+        return false;
+  }
 };
 
 /* METODO MOVEINVADERS: Método que permite mover las coordenadas "x" y "y" del objeto

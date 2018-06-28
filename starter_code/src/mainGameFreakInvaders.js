@@ -56,7 +56,12 @@ function GameFreakInvaders() {
    contadorOvni++;
    that.background.move();
    that.freakinvaders.moveOvni();
-   that.freakinvaders.moveInvaders();
+
+   /////// CONDICION DE SALIDA SI LOS INVASORES ATERRIZAN ////////////////
+   if (that.freakinvaders.moveInvaders() === false){
+    that.defensepod.gameOver=true;
+   } 
+   ///////////// FIN DE CONDICION DE SALIDA POR ATERRIZAJE
    that.defensepod.moveShoot();
 
   // SECCION QUE DISPARA LA CREACION DEL OVNI CADA 10 SEGUNDOS
