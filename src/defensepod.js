@@ -97,7 +97,7 @@ DefensePod.prototype.drawShoot = function(shootsArray) {
 */
 DefensePod.prototype.hitInvader = function(shoot) {
   var hit = false;
-
+  // CONDICION DE COLISIONES DEL OVNI ///////////////////////////////////
   if (this.freaks.invaderOvni.isAlive) {
     if (
       shoot.x < this.freaks.invaderOvni.x + this.freaks.invaderOvni.width &&
@@ -116,7 +116,7 @@ DefensePod.prototype.hitInvader = function(shoot) {
   for (var i = 0; i < this.freaks.offensivesLines; i++) {
     for (var j = 0; j < this.freaks.invadersPerLine; j++) {
       if (this.freaks.invaders[i][j].isAlive) {
-        //    CONDICION DE COLISIONES
+        //    CONDICION DE COLISIONES DE LOS INVADERS  ////////////////////////////////////
         if (
           shoot.x <
             this.freaks.invaders[i][j].x + this.freaks.invaders[i][j].width &&

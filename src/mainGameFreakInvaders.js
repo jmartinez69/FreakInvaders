@@ -165,6 +165,7 @@ BackgroundImage.prototype.drawBackground = function() {
   }
 };
 
+// VARIABLE GLOBAL QUE LLEVA LOS CÓDIGOS ASCII DE LAS TECLAS DEL JUEGO ////
 var keyCodes = {
   moverDerecha: 39,
   moverIzquierda: 37,
