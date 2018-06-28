@@ -91,7 +91,7 @@ function GameFreakInvaders() {
    }
 
 
-   // IMPRESIÓN DE TEXT CON VIDAS, NIVEL Y PUNTAJE
+   // IMPRESIÓN DE TEXTO CON VIDAS, NIVEL Y PUNTAJE
    that.defencePoints = that.defensepod.puntaje;
    that.ctx.fillStyle = "white";
    that.ctx.fillText("Vidas: " + that.defensepod.vidas, 600, 30);
@@ -172,8 +172,8 @@ var sounds = [
     {id:"Defense", src:"defenseShoot.ogg"},
     {id:"KillInvader", src:"invaderKill.ogg"},
     {id:"KillOvni", src:"ovniKill.ogg"},
-    {id:"FItheme", src:"FreakInvadersTheme.ogg"},
-
+    {id:"KillPod", src:"podKill.ogg"},
+    {id:"FItheme", src:"FreakInvadersTheme.ogg"}
 ];
 for (var i=0; i < sounds.length; i++){
    registerPath=audioPath+"/"+sounds[i].src;
