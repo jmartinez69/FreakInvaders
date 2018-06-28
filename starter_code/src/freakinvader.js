@@ -110,6 +110,11 @@ OffensiveInvaders.prototype.lastVerticalDefence = function() {
     }
   }
 }; 
+
+/* METODO LASTHORIZONTALDEFENCE: Permite validar el primer elemento vivo que quede
+   en la linea de ataque mas cercana al "pod". A ser llamada para determinar si los
+   invasores llegan a tocar la linea Y del "pod" lo cual acaba el juego
+*/
   OffensiveInvaders.prototype.lastHorizontalDefence = function() {
     var lastHD = {};
       for (var i = this.offensivesLines - 1; i >= 0; i--) {

@@ -167,7 +167,8 @@ var sounds = [
     {id:"Defense", src:"defenseShoot.ogg"},
     {id:"KillInvader", src:"invaderKill.ogg"},
     {id:"KillOvni", src:"ovniKill.ogg"},
-    {id:"KillPod", src:"podKill.ogg"}
+    {id:"FItheme", src:"FreakInvadersTheme.ogg"},
+
 ];
 for (var i=0; i < sounds.length; i++){
    registerPath=audioPath+"/"+sounds[i].src;
@@ -179,6 +180,7 @@ for (var i=0; i < sounds.length; i++){
 
 // SECCION DE COMIENZO DEL JUEGO Y CAPTURA DE TECLAS
 document.getElementById("start-game-button").onclick = function() {
+  createjs.Sound.play("FItheme");
   newGame = new GameFreakInvaders();
   document.onkeydown = function(e) {
     switch (e.keyCode) {
