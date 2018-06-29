@@ -16,7 +16,7 @@ function GameFreakInvaders() {
     this.actualLevel
   );
   this.freakinvaders.createInvadersMatrix();
-  this.freakinvaders.createOvni();
+  //this.freakinvaders.createOvni();
   this.defensepod = new DefensePod(this.ctx, this.canvas, this.freakinvaders);
   // FIN DE SECCION DE CREACION INICIAL DE ELEMENTOS DEL JUEGO
 
@@ -188,6 +188,7 @@ for (var i=0; i < sounds.length; i++){
 
 // SECCION DE COMIENZO DEL JUEGO Y CAPTURA DE TECLAS
 document.getElementById("start-game-button").onclick = function() {
+  document.getElementById("intro").style.display="none";
 
   newGame = new GameFreakInvaders();
   newGame.gameAudio.play();
