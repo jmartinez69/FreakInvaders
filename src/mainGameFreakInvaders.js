@@ -16,7 +16,7 @@ function GameFreakInvaders() {
     this.actualLevel
   );
   this.freakinvaders.createInvadersMatrix();
-  //this.freakinvaders.createOvni();
+
   this.defensepod = new DefensePod(this.ctx, this.canvas, this.freakinvaders);
   // FIN DE SECCION DE CREACION INICIAL DE ELEMENTOS DEL JUEGO
 
@@ -50,7 +50,6 @@ function GameFreakInvaders() {
       alert("NUEVO NIVEL: " + that.actualLevel);
       that.freakinvaders = new OffensiveInvaders(that.ctx,that.canvas,that.actualLevel);
       that.freakinvaders.createInvadersMatrix();
- //     that.freakinvaders.createOvni();
       that.defensepod = new DefensePod(that.ctx,that.canvas,that.freakinvaders);
       that.defensepod.puntaje = that.defencePoints;
       that.defensepod.vidas = that.defensePodVidas;
@@ -68,8 +67,8 @@ function GameFreakInvaders() {
    ///////////// FIN DE CONDICION DE SALIDA POR ATERRIZAJE
    that.defensepod.moveShoot();
 
-  // SECCION QUE DISPARA LA CREACION DEL OVNI CADA 10 SEGUNDOS
-   if (contadorOvni >= segundos * 10){      
+  // SECCION QUE DISPARA LA CREACION DEL OVNI CADA 15 SEGUNDOS
+   if (contadorOvni >= segundos * 15){      
      that.freakinvaders.createOvni();
      contadorOvni=0;
    }
