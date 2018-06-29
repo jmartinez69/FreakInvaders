@@ -50,7 +50,7 @@ function GameFreakInvaders() {
       alert("NUEVO NIVEL: " + that.actualLevel);
       that.freakinvaders = new OffensiveInvaders(that.ctx,that.canvas,that.actualLevel);
       that.freakinvaders.createInvadersMatrix();
-      that.freakinvaders.createOvni();
+ //     that.freakinvaders.createOvni();
       that.defensepod = new DefensePod(that.ctx,that.canvas,that.freakinvaders);
       that.defensepod.puntaje = that.defencePoints;
       that.defensepod.vidas = that.defensePodVidas;
