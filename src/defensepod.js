@@ -13,6 +13,18 @@ function DefensePod(ctx, canvas, freakinvaders) {
   this.freaks = freakinvaders;
   this.puntaje = 0;
 }
+
+// ESTRUCTURA CONSTRUCTURA DISPAROS INDIVIDUALES
+function Shoot(ctx, canvas) {
+  this.ctx = ctx;
+  this.canvas = canvas;
+  this.shootBoolean = true;
+  this.x = 0;
+  this.y = canvas.height;
+  this.shootLineOffset = 20;
+  this.direccion = "up";
+  this.shootSpeed = -4;
+}
 /////////// SECCION DE METODOS PROTOTIPO DE DEFENSEPOD /////////////////////
 
 /* METODO DRAWDFENSE: Método encargado de dibujar el "pod" de defensa
@@ -155,14 +167,4 @@ DefensePod.prototype.hitInvader = function(shoot) {
     return hit;
   };
 
-// ESTRUCTURA CONSTRUCTURA DISPAROS INDIVIDUALES
-function Shoot(ctx, canvas) {
-  this.ctx = ctx;
-  this.canvas = canvas;
-  this.shootBoolean = true;
-  this.x = 0;
-  this.y = canvas.height;
-  this.shootLineOffset = 20;
-  this.direccion = "up";
-  this.shootSpeed = -4;
-}
+

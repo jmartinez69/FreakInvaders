@@ -10,6 +10,17 @@ function OffensiveInvaders(ctx, canvas, level) {
   this.level=level;
 
 }
+//ESTRUCTURA CONSTRUCTORA DE ALIENIGENAS INDIVIDUALES
+function Invader(typeInvader) {
+  this.type = typeInvader;
+  this.image = "";
+  this.isAlive = true;
+  this.x = 0;
+  this.y = 0;
+  this.width = 40;
+  this.height = 25;
+  this.horizontalSpeed = 0.4;
+}
 
 ////////// SECCION DE METODOS PROTOTIPOS DE OFFENSIVEINVADERS ////////////
 
@@ -229,14 +240,4 @@ OffensiveInvaders.prototype.moveOvni = function() {
   }
 };
 
-//ESTRUCTURA CONSTRUCTORA DE ALIENIGENAS INDIVIDUALES
-function Invader(typeInvader) {
-  this.type = typeInvader;
-  this.image = "";
-  this.isAlive = true;
-  this.x = 0;
-  this.y = 0;
-  this.width = 40;
-  this.height = 25;
-  this.horizontalSpeed = 0.4;
-}
+
